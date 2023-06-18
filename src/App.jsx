@@ -135,7 +135,6 @@ const App = ({
               const convertToPercentage = (inputNumber) => {
                 return Number((inputNumber * 100).toFixed(2));
               }
-              console.log('triggered', playerInfo);
               if (isMounted.current) {
                 setPlayers((prevPlayers) => {
                   if (!prevPlayers.some((prevPlayer) => prevPlayer.full_name === playerInfoResult?.data?.full_name)) {
@@ -158,14 +157,12 @@ const App = ({
                   }
                   return prevPlayers;
                 });
-                console.log('setPlayer');
                 cb();
               }
             }).catch(() => {
               cb();
             });
           }).catch(() => {
-            console.log('catch error', playerInfo);
             delay(600).then(() => {
               cb();
             }).catch(() => {
