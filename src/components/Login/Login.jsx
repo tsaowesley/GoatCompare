@@ -34,7 +34,7 @@ const Login = ({
         setErrorMessage('username or password is invalid')
         return;
       }
-      await axios.get(`/api/0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=${token}`);
+      await axios.get(`https://api.sportradar.com/nba/trial/v8/en/players/0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=${token}`);
       await delay(600);
       changeToken(token);
     } catch {
