@@ -216,93 +216,97 @@ const App = ({
   return (
     <div className={`app font ${isDarkMode && "dark"}`}>
       <div className="topbar">
-        {hasTopbarDescription && hasPlayer !== 'both' ? (
-          <div className="description">
-            {i18n.t(`Please choosing Player by clicking the point image`, { number: hasPlayer === 'first' ? i18n.t('two') : i18n.t('one')})}
-          </div>
-        ) : (
-          hasPlayer === 'both' ? <div className="empty-dom"></div> : (
-            <div className="searchbar">
-              <img alt="" className="searchbar-image" src={searchSvg} />
-              <input
-                className="searchbar-text"
-                placeholder={i18n.t('Search')}
-                onChange={(e) => {
-                  setSearchValue(e.currentTarget.value);
-                }}
-                value={searchValue}
-              />
-            </div>
-          )
-        )}
-        <div className="right-container">
-          {hasMenuDetails || hasReturnButton || page === 'vsPage' ? (
-            <div className="return-container" onClick={() => {
-              if (hasMenuDetails) {
-                setHasMenuDetails(false);
-                return;
-              }
-              if (page === 'vsPage') {
-                setHasTopbarDescription(false);
-                setPage('players');
-                setHasPlayer('none');
-                return;
-              }
-              if (hasReturnButton) {
-                setHasReturnButton(false);
-              }
-            }
-            }>
-              <img alt="" className="return" src={isDarkMode ? returnDarkSvg : returnSvg} />
+        {!!token ? (
+          hasTopbarDescription && hasPlayer !== 'both' ? (
+            <div className="description">
+              {i18n.t(`Please choosing Player by clicking the point image`, { number: hasPlayer === 'first' ? i18n.t('two') : i18n.t('one')})}
             </div>
           ) : (
-            <div className="tabs">
-              <div
-                className="tab vs-container"
-                onClick={() => {
-                  setHasTopbarDescription(true);
-                  setPage('vsPage');
-                  setSearchValue('');
-                  setSortingDep(null);
-                }
-              }>
-                <div className="tab-text">
-                  {i18n.t('VS')}
-                </div>
-                <img alt="" className="tab-image vs" src={basketballSvg} />
+            hasPlayer === 'both' ? <div className="empty-dom"></div> : (
+              <div className="searchbar">
+                <img alt="" className="searchbar-image" src={searchSvg} />
+                <input
+                  className="searchbar-text"
+                  placeholder={i18n.t('Search')}
+                  onChange={(e) => {
+                    setSearchValue(e.currentTarget.value);
+                  }}
+                  value={searchValue}
+                />
               </div>
-              {!!sortingDep ? (
-                <div className="return-container" onClick={() => {
-                  if (hasReturnButton) {
-                    setHasReturnButton(false);
-                    return;
-                  }
-                  if (sortingDep) {
+            )
+          )
+        ) : <div className="empty-dom"></div>}
+        <div className="right-container">
+          {!!token && (
+            hasMenuDetails || hasReturnButton || page === 'vsPage' ? (
+              <div className="return-container" onClick={() => {
+                if (hasMenuDetails) {
+                  setHasMenuDetails(false);
+                  return;
+                }
+                if (page === 'vsPage') {
+                  setHasTopbarDescription(false);
+                  setPage('players');
+                  setHasPlayer('none');
+                  return;
+                }
+                if (hasReturnButton) {
+                  setHasReturnButton(false);
+                }
+              }
+              }>
+                <img alt="" className="return" src={isDarkMode ? returnDarkSvg : returnSvg} />
+              </div>
+            ) : (
+              <div className="tabs">
+                <div
+                  className="tab vs-container"
+                  onClick={() => {
+                    setHasTopbarDescription(true);
+                    setPage('vsPage');
+                    setSearchValue('');
                     setSortingDep(null);
                   }
-                }
-                }>
-                  <img alt="" className="return" src={isDarkMode ? returnDarkSvg : returnSvg} />
-                </div>
-              ): (
-                <div
-                  className="tab sort-container"
-                  onClick={() => {
-                    setHasSortingDropdown((prevHasSortingDropdown) => !prevHasSortingDropdown);
-                  }}
-                >
+                  }>
                   <div className="tab-text">
-                    {i18n.t('SORT')}
+                    {i18n.t('VS')}
                   </div>
-                  {hasSortingDropdown && (
-                    <div className="clicked-container">
-                      <div className="clicked"></div>
-                    </div>
-                  )}
-                  <img alt="" className="tab-image sort" src={basketballSvg} />
+                  <img alt="" className="tab-image vs" src={basketballSvg} />
                 </div>
-              )}
-            </div>
+                {!!sortingDep ? (
+                  <div className="return-container" onClick={() => {
+                    if (hasReturnButton) {
+                      setHasReturnButton(false);
+                      return;
+                    }
+                    if (sortingDep) {
+                      setSortingDep(null);
+                    }
+                  }
+                  }>
+                    <img alt="" className="return" src={isDarkMode ? returnDarkSvg : returnSvg} />
+                  </div>
+                ): (
+                  <div
+                    className="tab sort-container"
+                    onClick={() => {
+                      setHasSortingDropdown((prevHasSortingDropdown) => !prevHasSortingDropdown);
+                    }}
+                  >
+                    <div className="tab-text">
+                      {i18n.t('SORT')}
+                    </div>
+                    {hasSortingDropdown && (
+                      <div className="clicked-container">
+                        <div className="clicked"></div>
+                      </div>
+                    )}
+                    <img alt="" className="tab-image sort" src={basketballSvg} />
+                  </div>
+                )}
+              </div>
+            )
           )}
           <div className="menu" onClick={() => setHasMenuDetails((prevHasMenuDetails) => !prevHasMenuDetails)}>
             <div className="menu-container">
