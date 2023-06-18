@@ -57,7 +57,7 @@ const Login = ({
 
   return (
     <div className={`login-page ${isDarkMode && "dark"}`}>
-      <div className="input-container">
+      <div className="input-container first">
         <div className="title">
           {i18n.t('Username')}
         </div>

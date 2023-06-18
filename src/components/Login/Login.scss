@@ -19,6 +19,10 @@ div.login-page {
     align-items: center;
     flex-direction: row;
 
+    &.first {
+      margin-top: 100px;
+    }
+
     & > .title {
       color: rgb(118, 114, 114);
     }
