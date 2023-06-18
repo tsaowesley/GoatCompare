@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/GoatCompare/static/css/main.81718ed3.css",
-    "main.js": "/GoatCompare/static/js/main.634fd2a2.js",
+    "main.js": "/GoatCompare/static/js/main.1cf2688a.js",
     "static/media/search.svg": "/GoatCompare/static/media/search.88cc8acc4df7b7c6418b8596d413fe56.svg",
     "index.html": "/GoatCompare/index.html",
     "static/media/return-dark.svg": "/GoatCompare/static/media/return-dark.f89ea5971621c567bfe3a139f75e7f10.svg",
     "static/media/return.svg": "/GoatCompare/static/media/return.ed86eb49e8084c30a10d3ced58226124.svg",
     "main.81718ed3.css.map": "/GoatCompare/static/css/main.81718ed3.css.map",
-    "main.634fd2a2.js.map": "/GoatCompare/static/js/main.634fd2a2.js.map"
+    "main.1cf2688a.js.map": "/GoatCompare/static/js/main.1cf2688a.js.map"
   },
   "entrypoints": [
     "static/css/main.81718ed3.css",
-    "static/js/main.634fd2a2.js"
+    "static/js/main.1cf2688a.js"
   ]
 }
