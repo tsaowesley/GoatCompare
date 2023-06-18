@@ -128,13 +128,14 @@ const App = ({
     await eachLimit(
       playerInfos,
       1,
-      async (playerInfo) => {
+      async (playerInfo, cb) => {
         try {
           const playerInfoResult = await axios.get(`${hostname}${playerInfo.id}/profile.json?api_key=${token}`);
           await delay(600);
           const convertToPercentage = (inputNumber) => {
             return Number((inputNumber * 100).toFixed(2));
           }
+          console.log('triggered', playerInfo);
           if (isMounted.current) {
             setPlayers((prevPlayers) => {
               if (!prevPlayers.some((prevPlayer) => prevPlayer.full_name === playerInfoResult?.data?.full_name)) {
@@ -157,9 +158,13 @@ const App = ({
               }
               return prevPlayers;
             });
+            console.log('setPlayer');
+            cb();
           }
         } catch {
+          console.log('catch error', playerInfo);
           await delay(600);
+          cb();
         }
       },
     );
