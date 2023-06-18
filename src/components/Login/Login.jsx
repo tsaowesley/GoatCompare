@@ -26,8 +26,14 @@ const Login = ({
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
-  const testToken = async () => {
+  const testTokenAndAccount = async () => {
     try {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const userExists = users.some((user) => user.username === username && user.password === password);
+      if (!userExists) {
+        setErrorMessage('username or password is invalid')
+        return;
+      }
       await axios.get(`/api/0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=${token}`);
       await delay(600);
       changeToken(token);
@@ -37,11 +43,16 @@ const Login = ({
   };
 
   const register = () => {
-    const users = JSON.parse(localStorage.getItem('users'));
-    console.log(users);
+    const users = JSON.parse(localStorage.getItem('users')) || [];
     if (users.some((user) => user.username === username)) {
-      
+      setErrorMessage('username already exists')
+      return;
     }
+    const newUsers = [...users, { username, password }];
+    localStorage.setItem('users', JSON.stringify(newUsers));
+    setUsername('');
+    setPassword('');
+    setIsRegistering(false);
   };
 
   return (
@@ -55,6 +66,7 @@ const Login = ({
           placeholder={i18n.t('Username')}
           onChange={(e) => {
             setUsername(e.currentTarget.value);
+            setErrorMessage('');
           }}
           value={username}
         />
@@ -68,6 +80,7 @@ const Login = ({
           placeholder={i18n.t('Password')}
           onChange={(e) => {
             setPassword(e.currentTarget.value);
+            setErrorMessage('');
           }}
           value={password}
         />
@@ -82,6 +95,7 @@ const Login = ({
             placeholder={i18n.t('Token')}
             onChange={(e) => {
               setToken(e.currentTarget.value);
+              setErrorMessage('');
             }}
             value={token}
           />
@@ -95,19 +109,24 @@ const Login = ({
             register();
             return;
           }
-          testToken();
+          testTokenAndAccount();
         }}
       >
         {i18n.t('Confirm')}
       </div>
-      <div
-        className="button register"
-        onClick={() => {
-          setIsRegistering(true);
-        }}
-      >
-        {i18n.t('Register')}
-      </div>
+      {!isRegistering && (
+        <div
+          className="button register"
+          onClick={() => {
+            setIsRegistering(true);
+            setErrorMessage('');
+            setUsername('');
+            setPassword('');
+          }}
+        >
+          {i18n.t('Register')}
+        </div>
+      )}
       <div className="error-message">
         {i18n.t(errorMessage)}
       </div>

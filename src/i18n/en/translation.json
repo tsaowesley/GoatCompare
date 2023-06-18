@@ -16,5 +16,7 @@
   "token invalid": "token invalid",
   "two": "two",
   "Username": "Username",
+  "username already exists": "username already exists",
+  "username or password is invalid": "username or password is invalid",
   "VS": "VS"
 }
