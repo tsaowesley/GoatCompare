@@ -125,47 +125,53 @@ const App = ({
   }
 
   const getPlayers = async () => {
-    await eachLimit(
+    eachLimit(
       playerInfos,
       1,
-      async (playerInfo, cb) => {
-        try {
-          const playerInfoResult = await axios.get(`${hostname}${playerInfo.id}/profile.json?api_key=${token}`);
-          await delay(600);
-          const convertToPercentage = (inputNumber) => {
-            return Number((inputNumber * 100).toFixed(2));
-          }
-          console.log('triggered', playerInfo);
-          if (isMounted.current) {
-            setPlayers((prevPlayers) => {
-              if (!prevPlayers.some((prevPlayer) => prevPlayer.full_name === playerInfoResult?.data?.full_name)) {
-                return [...prevPlayers, {
-                  full_name: playerInfoResult?.data?.full_name,
-                  field_goals_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.field_goals_pct) === 'number'
-                    && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.field_goals_pct),
-                  three_points_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.three_points_pct) === 'number'
-                    && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.three_points_pct),
-                  free_throws_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.free_throws_pct) === 'number'
-                    && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.free_throws_pct),
-                  rebounds: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.rebounds,
-                  assists: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.assists,
-                  blocks: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.blocks,
-                  steals: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.steals,
-                  turnovers: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.turnovers,
-                  points: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.points,
-                  img: playerInfo.img,
-                }]
+      (playerInfo, cb) => {
+        axios.get(`${hostname}${playerInfo.id}/profile.json?api_key=${token}`)
+          .then((playerInfoResult) => {
+            delay(600).then(() => {
+              const convertToPercentage = (inputNumber) => {
+                return Number((inputNumber * 100).toFixed(2));
               }
-              return prevPlayers;
+              console.log('triggered', playerInfo);
+              if (isMounted.current) {
+                setPlayers((prevPlayers) => {
+                  if (!prevPlayers.some((prevPlayer) => prevPlayer.full_name === playerInfoResult?.data?.full_name)) {
+                    return [...prevPlayers, {
+                      full_name: playerInfoResult?.data?.full_name,
+                      field_goals_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.field_goals_pct) === 'number'
+                        && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.field_goals_pct),
+                      three_points_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.three_points_pct) === 'number'
+                        && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.three_points_pct),
+                      free_throws_pct: typeof(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.free_throws_pct) === 'number'
+                        && convertToPercentage(playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.total?.free_throws_pct),
+                      rebounds: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.rebounds,
+                      assists: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.assists,
+                      blocks: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.blocks,
+                      steals: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.steals,
+                      turnovers: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.turnovers,
+                      points: playerInfoResult?.data?.seasons?.[0]?.teams?.[0]?.average?.points,
+                      img: playerInfo.img,
+                    }]
+                  }
+                  return prevPlayers;
+                });
+                console.log('setPlayer');
+                cb();
+              }
+            }).catch(() => {
+              cb();
             });
-            console.log('setPlayer');
-            cb();
-          }
-        } catch {
-          console.log('catch error', playerInfo);
-          await delay(600);
-          cb();
-        }
+          }).catch(() => {
+            console.log('catch error', playerInfo);
+            delay(600).then(() => {
+              cb();
+            }).catch(() => {
+              cb();
+            });
+          });
       },
     );
   };
