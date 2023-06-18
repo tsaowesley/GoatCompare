@@ -72,6 +72,7 @@ const playerInfos = [
   },
 ];
 
+
 const App = ({
   apiKey,
   changeDarkMode,
@@ -99,6 +100,7 @@ const App = ({
   /// teams[0].average.points
   const [players, setPlayers] = useState([]);
   const isMounted = useRef(false);
+  const hostname = window.location.hostname.includes('localhost') ? '/api/' : 'https://api.sportradar.com/nba/trial/v8/en/players/';
 
   useEffect(() => {
     isMounted.current = true;
@@ -128,7 +130,7 @@ const App = ({
       1,
       async (playerInfo) => {
         try {
-          const playerInfoResult = await axios.get(`https://api.sportradar.com/nba/trial/v8/en/players/${playerInfo.id}/profile.json?api_key=${token}`);
+          const playerInfoResult = await axios.get(`${hostname}${playerInfo.id}/profile.json?api_key=${token}`);
           await delay(600);
           const convertToPercentage = (inputNumber) => {
             return Number((inputNumber * 100).toFixed(2));

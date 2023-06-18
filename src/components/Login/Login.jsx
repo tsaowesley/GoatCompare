@@ -21,6 +21,7 @@ const Login = ({
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
+  const hostname = window.location.hostname.includes('localhost') ? '/api/' : 'https://api.sportradar.com/nba/trial/v8/en/players/';
 
   const delay = async (time) => {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -34,7 +35,7 @@ const Login = ({
         setErrorMessage('username or password is invalid')
         return;
       }
-      await axios.get(`https://api.sportradar.com/nba/trial/v8/en/players/0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=${token}`);
+      await axios.get(`${hostname}0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=${token}`);
       await delay(600);
       changeToken(token);
     } catch {
