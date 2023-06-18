@@ -1,0 +1,11 @@
+.font {
+  /* Typography */
+  font-family: system-ui;
+  font-weight: 600;
+  letter-spacing: 0.03vh;
+
+  &:lang(zh-TW) {
+    /* Typography */
+    font-family: sans-serif;
+  }
+}

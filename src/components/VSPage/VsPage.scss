@@ -1,0 +1,160 @@
+div.vs-page {
+  display: flex;
+  width: 100vw;
+  height: 90vh;
+  padding-bottom: 5vh;
+  margin-top: 10vh;
+  overflow-y: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  & > .players-page {
+    margin-top: unset;
+  }
+
+  & > .avatars-container {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+
+    & > .avatar-container {
+      display: flex;
+      width: 50vw;
+      height: 500px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &.first {
+        border-right: 1px solid black;
+      }
+
+      & > .avatar {
+        display: flex;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 25px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: rgb(217, 217, 217);
+
+        & > .avatar-img {
+          width: 150px;
+          height: 150px;
+          margin-top: 30px;
+        }
+
+        & > .avatar-player-img {
+          width: 400px;
+          height: 290px;
+        }
+      }
+
+      & > .text {
+        font-family: serif;
+        font-size: 30px;
+        font-weight: 200;
+        color: black;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  & > .data-container {
+    display: flex;
+    flex-direction: column;
+
+    & > .data-row-container {
+      display: flex;
+      width: 100%;
+      height: 130px;
+      padding-right: 38px;
+      padding-left: 38px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: black;
+      border-bottom: 2px solid black;
+
+      & > .title {
+        display: flex;
+        width: 175px;
+        height: 70px;
+        padding-bottom: 3px;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        font-weight: 700;
+        color: black;
+        background-color: rgb(217, 217, 217);
+        border-radius: 30px;
+        box-shadow: 4px 8px 3px rgb(198, 198, 198);
+      }
+
+      & > .value {
+        display: flex;
+        width: 150px;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 400;
+        color: black;
+        white-space: nowrap;
+      }
+
+      & > .image-container {
+        width: 60px;
+        height: 60px;
+
+        & > .crown-img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  &.vs-page.dark {
+    & > .avatars-container {
+      display: flex;
+      width: 100vw;
+      flex-direction: row;
+      border-bottom: 2px solid white;
+
+      & > .avatar-container {
+        &.first {
+          border-right: 2px solid white;
+        }
+
+        & > .avatar {
+          background-color: rgb(51, 51, 51);
+        }
+
+        & > .text {
+          color: white;
+        }
+      }
+    }
+
+    & > .data-container {
+      & > .data-row-container {
+        color: white;
+        border-bottom: 2px solid white;
+
+        & > .title {
+          color: black;
+          background-color: rgb(217, 217, 217);
+          box-shadow: 4px 8px 3px rgb(198, 198, 198);
+        }
+
+        & > .value {
+          color: white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,254 @@
+div.players-page {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  margin-top: 10vh;
+  overflow-y: auto;
+  flex-wrap: wrap;
+
+  &.personal {
+    padding-top: 3vh;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    & > .player-container {
+      height: unset;
+      margin-bottom: 90px;
+
+      & > .name {
+        font-size: 40px;
+      }
+    }
+
+    & > .data-container {
+      display: flex;
+      width: 100vw;
+      padding-left: 9vw;
+      padding-right: 9vw;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      & > .data-row-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 56px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+        & > .title {
+          display: flex;
+          width: 166px;
+          height: 71px;
+          padding-bottom: 4px;
+          justify-content: center;
+          align-items: center;
+          font-size: 50px;
+          font-weight: 700;
+          color: black;
+          background-color: rgb(217, 217, 217);
+          border-radius: 30px;
+          box-shadow: 6px 8px 3px rgb(198, 198, 198);
+        }
+
+        & > .value {
+          display: flex;
+          width: 160px;
+          justify-content: center;
+          font-size: 40px;
+          font-weight: 400;
+          color: black;
+          white-space: nowrap;
+        }
+
+        & > .empty-dom {
+          width: 160px;
+          height: 68px;
+        }
+      }
+    }
+  }
+
+  & > .sorting-dep {
+    position: absolute;
+    top: 1vh;
+    right: 3vw;
+    display: flex;
+    width: 181px;
+    height: 82px;
+    padding-bottom: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: 52px;
+    font-weight: 300;
+    border-radius: 50px;
+    box-shadow: 4px 8px 3px rgb(198, 198, 198);
+
+    &.AST {
+      color: white;
+      background-color: rgb(49, 61, 220);
+    }
+
+    &.PTS {
+      color: black;
+      background-color: rgb(229, 221, 88);
+    }
+  }
+
+  & > .player-container {
+    position: relative;
+    display: flex;
+    width: 380px;
+    height: 460px;
+    margin-right: 40px;
+    margin-left: 30px;
+    flex-direction: column;
+    align-items: center;
+
+    & > .ranking {
+      position: absolute;
+      top: -17px;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 76px;
+      font-weight: 700;
+      border-radius: 50%;
+
+      &.size-0 {
+        width: 160px;
+        height: 160px;
+        top: -70px;
+        left: -11px;
+        font-weight: 600;
+        font-size: 113px;
+        background-color: rgb(245, 181, 73);
+        text-shadow: 8px 6px 0 rgb(240, 135, 51);
+      }
+
+      &.size-1 {
+        width: 142px;
+        height: 142px;
+        top: -66px;
+        left: -20px;
+        font-weight: 800;
+        font-size: 98px;
+        background-color: rgb(66, 66, 66);
+        text-shadow: 8px 6px 0 rgb(35, 35, 35);
+      }
+
+      &.size-2 {
+        width: 124px;
+        height: 124px;
+        top: -24px;
+        left: -8px;
+        font-weight: 500;
+        font-size: 80px;
+        background-color: rgb(236, 84, 40);
+        text-shadow: 8px 6px 0 rgb(215, 67, 34);
+      }
+
+      &.size-3 {
+        background-color: rgb(43, 115, 205);
+        text-shadow: 8px 6px 0 rgb(35, 97, 174);
+      }
+
+      &.size-4,&.size-5 {
+        background-color: rgb(55, 125, 34);
+        text-shadow: 8px 6px 0 rgb(55, 125, 34);
+      }
+
+      &.size-4, &.size-5 {
+        background-color: rgb(55, 125, 34);
+        text-shadow: 8px 6px 0 rgb(55, 125, 34);
+      }
+
+      &.size-6, &.size-8, &.size-9, &.size-10, &.size-11 {
+        background-color: rgb(235, 51, 49);
+        text-shadow: 8px 6px 0 rgb(199, 41, 28);
+      }
+
+      &.size-7 {
+        background-color: rgb(83, 191, 242);
+        text-shadow: 8px 6px 0 rgb(62, 150, 213);
+      }
+
+      &.size-9, &.size-10, &.size-11 {
+        font-size: 58px;
+      }
+    }
+
+    & > .avatar-container {
+      display: flex;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: rgb(217, 217, 217);
+      cursor: pointer;
+
+      &.read-only {
+        cursor: default;
+      }
+      & > .avatar {
+        width: 400px;
+        height: 290px;
+      }
+    }
+
+    & > .name {
+      font-family: serif;
+      font-size: 30px;
+      font-weight: 200;
+      color: black;
+      white-space: nowrap;
+    }
+  }
+
+  &.players-page.dark {
+    &.personal {
+
+      & > .data-container {
+        & > .data-row-container {
+          & > .value {
+            color: white;
+          }
+        }
+      }
+    }
+
+    & > .sorting-dep {
+      box-shadow: 4px 8px 3px rgb(51, 51, 51);
+    }
+
+    & > .player-container {
+      position: relative;
+      display: flex;
+      width: 380px;
+      height: 460px;
+      margin-right: 40px;
+      margin-left: 30px;
+      flex-direction: column;
+      align-items: center;
+
+      & > .avatar-container {
+        background-color: rgb(51, 51, 51);
+      }
+
+      & > .name {
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import "font";
+
+body {
+  /* Box-model */
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  /* Typography */
+  color: white;
+
+  /* Visual */
+  background: white;
+
+  & > div#root {
+    /* Box-model */
+    height: 100vh;
+  }
+
+  div {
+    box-sizing:border-box;
+  }
+}

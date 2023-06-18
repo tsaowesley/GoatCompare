@@ -1,0 +1,20 @@
+{
+  "Confirm": "Confirm",
+  "Dark Mode": "Dark Mode",
+  "Language": "Language",
+  "one": "one",
+  "Password": "Password",
+  "Player one": "Player one",
+  "Player two": "Player two",
+  "Please choosing Player by clicking the point image": "Please choosing Player {{number}} by clicking the point image",
+  "Register": "Register",
+  "Search": "Search",
+  "SORT": "SORT",
+  "Sort by AST": "Sort by AST",
+  "Sort by PTS": "Sort by PTS",
+  "Token": "Token",
+  "token invalid": "token invalid",
+  "two": "two",
+  "Username": "Username",
+  "VS": "VS"
+}

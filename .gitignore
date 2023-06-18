@@ -1,0 +1,13 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IDEA
+*.idea
+
+# production
+/build
+
+# Node
+node_modules
+
+# misc
+.DS_Store
