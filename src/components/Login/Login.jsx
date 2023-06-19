@@ -19,7 +19,7 @@ const Login = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState('kzdnebrwdkcdtkds7u58j4tg');
   const [username, setUsername] = useState('');
   const hostname = window.location.hostname.includes('localhost') ? '/api/' : 'https://api.sportradar.com/nba/trial/v8/en/players/';
 
